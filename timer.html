@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My watch</title>
+    <link rel="stylesheet" href="timer.css">
+</head>
+<body>
+    <div class="timer-container">
+    
+
+<p class="clock" id="clock"> </p>
+<p class="date" id="date"> </p>
+<hr>
+
+
+
+<h2>Your TIMER</h2>
+<div class="buttons">
+<p id="timer"> 0</p>
+<button onclick="startTimer()">Start</button>
+<button onClick="stopTimer()">Stop</button>
+<button onclick="resetTimer()">Reset</button>
+<button onclick="getTimerList()">Get time</button>
+<button onclick="clearAll()">Clear</button></div>
+
+<div class="list"> </div>
+
+<ul id="more">
+<li>Alarm</li>
+<li>Calender</li>
+<li>Contacts</li>
+
+</ul>
+
+
+</div></body>
+
+<script>
+
+
+function updateTime(){
+    const now= new Date().toLocaleTimeString();
+    now.toUpperCase();
+    document.getElementById("clock").innerText=now;
+    }
+updateTime();
+setInterval(updateTime,1000);
+
+
+function updateDate(){
+const today=new Date().toLocaleDateString("en-IN", {weekday:'long' , year:'numeric' , month:'short' , day:'numeric'});
+document.getElementById("date").innerText=today;
+}
+updateDate();
+
+let count=0;
+let timerId;
+
+function startTimer(){
+    timerId=setInterval(()=>{
+        count++;
+        document.getElementById("timer").innerText=count;}, 1000);
+}
+
+function stopTimer(){
+    clearInterval(timerId);}
+function resetTimer(){
+    count=0;document.getElementById("timer").innerText=count;clearInterval(timerId);}
+function getTimerList(){
+    const list=document.querySelector(".list");
+    const newPara =document.createElement("p");
+    newPara.innerText=`The stop time is ${count}`;
+    list.append(newPara);
+};
+const clearAll=()=>{
+    const list=document.querySelector(".list");
+    list.innerHTML = " ";
+
+};
+
+ 
+
+</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
